@@ -1,0 +1,25 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h2>All categories</h2>
+    <hr />
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-3 mb-3">
+                <div class="card" style="width: auto;">
+                <img src="{{category.image}}" height=200px class="card-img-top" alt="Image">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'single-category' category.id %}">{{category.name}}</a><span class="badge badge-primary ml-3">{{category.auctionlisting_set.all|length}}</span></h5>
+                        <hr />
+                        <a href="{% url 'single-category' category.id %}" class="btn btn-primary">View All</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <h2> There are no categories </h2>
+            {% endfor %}
+        </div>
+</div>
+
+{% endblock %}
